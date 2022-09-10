@@ -1,1 +1,1 @@
-# Ruby
+Aca van a estar todos los ejercicios de la cursada de Ruby hechos por Luis Emanuel Banega
