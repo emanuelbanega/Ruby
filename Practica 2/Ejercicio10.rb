@@ -1,14 +1,24 @@
 module Countable
-    def count_invocations_of(metodo)
+    def invocations
+        @invocations ||= Hash.new(0)
+    end
 
+    module ClassMethod
+        def count_invocations_of(metodo)
+            aliasmethod(":original#{metodo}",metodo)
+            definemethod"#{metodo}" do
+                invocations[method] += 1
+                send(":original#{metodo}")
+            end 
+        end
     end
 
     def invoked?(metodo)
-
+        @invocations[metodo] > 0
     end
 
     def invoked(metodo)
-
+        @invocations[metodo]
     end
 end
 
